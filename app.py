@@ -4,7 +4,7 @@ from flask_jwt_extended import JWTManager
 from flask_migrate import Migrate
 from datetime import timedelta
 
-# Initialize extensions without app first
+
 db = SQLAlchemy()
 jwt = JWTManager()
 migrate = Migrate()
@@ -28,15 +28,11 @@ def create_app():
     return app
 
 
-# Create app instance
+
 app = create_app()
 
-# Import models and routes AFTER app is created
-with app.app_context():
-    # Import models
-    from models import User
 
-    # Import routes
+with app.app_context():
     from routes.auth import *
 
 if __name__ == '__main__':
